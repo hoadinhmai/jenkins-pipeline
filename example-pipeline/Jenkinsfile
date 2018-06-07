@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+
+    parameters {
+         string(name: 'tomcat_dev', defaultValue: 'default', description: 'Staging Server')
+         string(name: 'tomcat_prod', defaultValue: 'default', description: 'Production Server')
+    }
+
+    triggers {
+         pollSCM('* * * * *')
+     }
+
+stages{
+        stage('Build'){
+            steps {
+                echo 'Build steps'
+            }
+            post {
+                success {
+                    echo 'Archiving artefacts'
+                }
+            }
+        }
+
+        stage ('Deployments'){
+            parallel{
+                stage ('Deploy to Staging'){
+                    steps {
+                        echo 'Deploying to Staging'
+
+                    }
+                }
+
+                stage ("Deploy to Production"){
+                    steps {
+                        echo 'Deploying to Prod'
+                    }
+                }
+            }
+        }
+    }
+}
