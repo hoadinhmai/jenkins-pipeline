@@ -4,7 +4,7 @@ pipeline {
 parameters {
     string(name: 'PYTHON_PATH', defaultValue: '~/Library/Python/2.7/bin/', description: 'Where Jenkins user sees Python')
     string(name: 'CFN_STACK_NAME', defaultValue: 'myStack', description: 'CFN stack name')
-    string(name: 'CFN_TEMPLATE_URL', defaultValue: 'https://s3-ap-southeast-2.amazonaws.com/cf-templates-1v98k5s74tmkv-ap-southeast-2/2018142hUu-very_sample1.json', description: 'S3 CFN template URL')
+    string(name: 'CFN_TEMPLATE_URL', defaultValue: 'https://s3-ap-southeast-2.amazonaws.com/cf-templates-1v98k5s74tmkv-ap-southeast-2/2018142hUu-very_sample1.json', description: 'CFN S3 template URL')
 }
 
 stages{
