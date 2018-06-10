@@ -2,14 +2,14 @@ pipeline {
     agent any
 
 parameters {
-    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+    string(name: 'PYTHON_PATH', defaultValue: '~/Library/Python/2.7/bin/', description: 'Python')
 }
 
 stages{
         stage('Validate CFN template'){
             steps {
                 echo 'Vaidating template'
-                sh '~/Library/Python/2.7/bin/aws cloudformation validate-template --template-body file:///Users/hoa/code/cloudformation/very_sample1.json'
+                sh "${params.PYTHON_PATH}aws cloudformation validate-template --template-body file:///Users/hoa/code/cloudformation/very_sample1.json"
             }
             post {
                 success {
@@ -21,7 +21,7 @@ stages{
         stage('Deploy CFN stack'){
             steps {
                 echo 'Building stack'
-                sh '~/Library/Python/2.7/bin/aws cloudformation create-stack --stack-name myteststack --template-url file:///Users/hoa/code/cloudformation/very_sample1.json'
+                sh "${params.PYTHON_PATH}aws cloudformation create-stack --stack-name myteststack --template-url https://s3-ap-southeast-2.amazonaws.com/cf-templates-1v98k5s74tmkv-ap-southeast-2/2018142hUu-very_sample1.json"
             }
             post {
                 success {
