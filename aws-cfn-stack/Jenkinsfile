@@ -11,7 +11,7 @@ stages{
         stage('Validate CFN template'){
             steps {
                 echo 'Vaidating template'
-                sh "${params.PYTHON_PATH}aws cloudformation validate-template --template-body file:///Users/hoa/code/cloudformation/very_sample1.json"
+                sh "${params.PYTHON_PATH}aws cloudformation validate-template --template-body ${params.CFN_TEMPLATE_URL}"
             }
             post {
                 success {
