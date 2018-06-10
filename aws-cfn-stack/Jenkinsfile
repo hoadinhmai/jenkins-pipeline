@@ -2,7 +2,8 @@ pipeline {
     agent any
 
 parameters {
-    string(name: 'PYTHON_PATH', defaultValue: '~/Library/Python/2.7/bin/', description: 'Python')
+    string(name: 'PYTHON_PATH', defaultValue: '~/Library/Python/2.7/bin/', description: 'Where Jenkins user sees Python')
+    string(name: 'S3_CFN_TEMPLATE_URL', defaultValue: 'https://s3-ap-southeast-2.amazonaws.com/cf-templates-1v98k5s74tmkv-ap-southeast-2/2018142hUu-very_sample1.json', description: 'S3 CFN template URL')
 }
 
 stages{
@@ -21,7 +22,7 @@ stages{
         stage('Deploy CFN stack'){
             steps {
                 echo 'Building stack'
-                sh "${params.PYTHON_PATH}aws cloudformation create-stack --stack-name myteststack --template-url https://s3-ap-southeast-2.amazonaws.com/cf-templates-1v98k5s74tmkv-ap-southeast-2/2018142hUu-very_sample1.json"
+                sh "${params.PYTHON_PATH}aws cloudformation create-stack --stack-name myteststack --template-url ${params.S3_CFN_TEMPLATE_URL}"
             }
             post {
                 success {
