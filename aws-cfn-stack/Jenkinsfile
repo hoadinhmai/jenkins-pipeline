@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+parameters {
+    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+}
+
 stages{
         stage('Validate CFN template'){
             steps {
@@ -17,6 +21,7 @@ stages{
         stage('Deploy CFN stack'){
             steps {
                 echo 'Building stack'
+                sh '~/Library/Python/2.7/bin/aws cloudformation create-stack --stack-name myteststack --template-url file:///Users/hoa/code/cloudformation/very_sample1.json'
             }
             post {
                 success {
