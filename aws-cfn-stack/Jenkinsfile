@@ -2,6 +2,18 @@ pipeline {
     agent any
 
 stages{
+        stage('Validate CFN template'){
+            steps {
+                echo 'Vaidating template'
+                sh '~/Library/Python/2.7/bin/aws cloudformation validate-template --template-body file://Users/hoa/code/cloudformation/very_sample1.json'
+            }
+            post {
+                success {
+                    echo 'CFN has been validated successfully!'
+                }
+            }
+        }
+
         stage('Deploy CFN stack'){
             steps {
                 echo 'Building stack'
