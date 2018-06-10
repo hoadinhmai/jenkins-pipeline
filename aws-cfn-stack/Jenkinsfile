@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+
+stages{
+        stage('Deploy CFN stack'){
+            steps {
+                echo 'Building stack'
+            }
+            post {
+                success {
+                    echo 'CFN stack creation completed successfully!'
+                }
+            }
+        }
+
+    }
+}
