@@ -1,3 +1,4 @@
 node {
-    load "jobs/pipeline.groovy"
+    checkout scm
+    jobDsl targets: 'jobs/pipeline.groovy'
 }
