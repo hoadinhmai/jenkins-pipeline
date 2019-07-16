@@ -1,3 +1,3 @@
 node {
-    load "jobs/Example.Groovy "
+    load "jobs/pipeline.Groovy "
 }
