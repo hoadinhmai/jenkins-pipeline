@@ -1,5 +1,5 @@
 node {
     checkout scm
-    jobDsl targets: 'jobs/pipeline.groovy'
-    jobDsl targets: 'jobs/example.groovy'
+    jobDsl targets: 'jobs/declarativePipeline/jobDSL.groovy'
+    jobDsl targets: 'jobs/multiBranchPipeline/jobDSL.groovy'
 }

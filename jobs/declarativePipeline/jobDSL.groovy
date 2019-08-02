@@ -1,4 +1,4 @@
-pipelineJob('DSL_Pipeline') {
+pipelineJob('hdm-declarative-pipeline') {
 
   def repo = 'git://github.com/hoadinhmai/jenkins-pipeline.git'
 
@@ -10,7 +10,7 @@ pipelineJob('DSL_Pipeline') {
         git {
           remote { url(repo) }
           branches('master', '**/feature*')
-          scriptPath('jobs/Jenkinsfile')
+          scriptPath('jobs/declarativePipeline/Jenkinsfile')
       }
     }
   }
